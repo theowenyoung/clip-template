@@ -31,4 +31,6 @@ chmod +x $BIN_DIR/*
 
 echo Install Success.
 
-echo Run \`make build\` to build
+echo Run \`make serve\` to preview the book.
+
+echo Run \`make build\` to build the book.

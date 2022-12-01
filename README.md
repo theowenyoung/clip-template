@@ -72,9 +72,11 @@ make serve
 
 网站的标题之类的配置都在`book.toml`下，照猫画虎修改即可。 查看所有可配置的东西，请参阅[这里](https://rust-lang.github.io/mdBook/format/configuration/index.html)
 
+主要是修改你的网站名称，网址，作者以及 Git Repo 相关配置等等。
+
 如果你有静态文件需要提交放在网站根目录到话，可以放在`template/archive` 下，现在有一个 `robots.txt`, 默认只允许搜索引擎收录首页，其他页面一律不允许，因为考虑到 clip 的文章大都是收藏别人的文章，所以不让搜索引擎收录是一个合理的默认选择，你可以根据自己的需要修改。
 
-主要是修改你的网站名称，网址，作者以及 Git Repo 相关配置等等。
+项目根目录下的`README.md` 文件被用于作为网站的首页。如果你不想用这个`README.md`,也可以在添加`template/archive/README.md`文件。
 
 ## 高级
 

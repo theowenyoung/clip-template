@@ -10,8 +10,9 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     tar -xf /tmp/$binname-x86_64-unknown-linux-gnu.tar.gz -C $BIN_DIR
     curl -OL https://github.com/rust-lang/mdBook/releases/download/v0.4.21/mdbook-v0.4.21-x86_64-unknown-linux-gnu.tar.gz
     tar -xf /tmp/mdbook-v0.4.21-x86_64-unknown-linux-gnu.tar.gz -C $BIN_DIR
-    curl -OL https://github.com/HollowMan6/mdbook-pdf/releases/download/v0.1.3/mdbook-pdf-v0.1.3-x86_64-unknown-linux-gnu.zip
-    unzip /tmp/mdbook-pdf-v0.1.3-x86_64-unknown-linux-gnu.zip -d $BIN_DIR
+    curl -OL https://github.com/denoland/deno/releases/download/v1.28.2/deno-x86_64-unknown-linux-gnu.zip
+    unzip /tmp/deno-x86_64-unknown-linux-gnu.zip -d $BIN_DIR
+
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # Mac OSX
     cd -- /tmp/
@@ -19,8 +20,11 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     unzip -o /tmp/$binname-x86_64-apple-darwin.zip -d $BIN_DIR
     curl -OL https://github.com/rust-lang/mdBook/releases/download/v0.4.21/mdbook-v0.4.21-x86_64-apple-darwin.tar.gz
     tar -xf /tmp/mdbook-v0.4.21-x86_64-apple-darwin.tar.gz -C $BIN_DIR
-    curl -OL https://github.com/HollowMan6/mdbook-pdf/releases/download/v0.1.3/mdbook-pdf-v0.1.3-x86_64-apple-darwin.zip
-    unzip -o /tmp/mdbook-pdf-v0.1.3-x86_64-apple-darwin.zip -d $BIN_DIR
+    curl -OL https://github.com/denoland/deno/releases/download/v1.28.2/deno-x86_64-apple-darwin.zip
+    unzip -o /tmp/deno-x86_64-apple-darwin.zip -d $BIN_DIR
+else
+    # not support
+    echo "not support this platform"
 fi
 
 chmod +x $BIN_DIR/*

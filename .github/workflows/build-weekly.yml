@@ -1,0 +1,48 @@
+name: Build Weekly Book
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: "16 8 * * SUN"
+jobs:
+  build-deploy:
+    concurrency: build-daily-book
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        with:
+          repository: theowenyoung/blog
+          path: blog
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.deno
+            ~/.cache/deno
+          key: ${{ runner.os }}-deno-${{ hashFiles('cli.ts') }}
+      - name: Get lastweek Beijin Day
+        run: echo "LASTWEEK=$(deno run cli.ts --lastweek --key)" >> $GITHUB_ENV
+      - run: make install
+      - name: Build lastweek book
+        id: build
+        run: JOURNAL_PATH=./blog make lastweek
+        continue-on-error: true
+        env:
+          MJ_APIKEY_PUBLIC: ${{ secrets.MJ_APIKEY_PUBLIC }}
+          MJ_APIKEY_PRIVATE: ${{ secrets.MJ_APIKEY_PRIVATE }}
+      - name: make release if build success
+        if: steps.build.outcome == 'success'
+        uses: "softprops/action-gh-release@v1"
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          tag_name: "weekly-${{ env.LASTWEEK }}"
+          generate_release_notes: false
+          body: |
+            Visit [Online](https://clip.owenyoung.com/).
+          files: |
+            ./dist/*/*.epub
+            ./dist/*/*.zip
+

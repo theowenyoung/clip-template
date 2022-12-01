@@ -1,0 +1,29 @@
+[book]
+title = "Owen's Clip"
+description = "Owen's Clip"
+src = "content"
+language = "zh"
+authors = ["Owen Young"]
+
+[output.html]
+base_url = "https://clip.owenyoung.com"
+git-repository-url = "https://github.com/theowenyoung/clip"
+edit-url-template = "https://github.com/theowenyoung/clip/edit/main/{path}"
+
+[output.html.search]
+enable = false
+
+[output.markdown]
+enable = true
+
+
+[mail]
+# enable false will diasble mail sending
+enable = false
+from_email = "bot@owenyoung.com"
+from_name = "Owen"
+# you can set the mailjet contact list id here
+# mailjet_contact_list_id = "17669"
+# or directly set the to_email, seperated by comma
+# or your can also set the environment variable TO_EMAIL
+to_email = ""

@@ -1,0 +1,55 @@
+name: Build Custom Book
+on:
+  workflow_dispatch:
+    inputs:
+      args:
+        default: ""
+        description: "args to build"
+        type: string
+        required: false
+      tag:
+        default: ""
+        description: "tag to release"
+        type: string
+        required: false
+jobs:
+  build-deploy:
+    concurrency: build-daily-book
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        with:
+          repository: theowenyoung/blog
+          path: blog
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.deno
+            ~/.cache/deno
+          key: ${{ runner.os }}-deno-${{ hashFiles('cli.ts') }}
+      - run: make install
+      - name: Build lastweek book
+        id: build
+        run: JOURNAL_PATH=./blog deno run -A ./cli.ts ${{ github.event.inputs.args }}
+        continue-on-error: true
+        env:
+          MJ_APIKEY_PUBLIC: ${{ secrets.MJ_APIKEY_PUBLIC }}
+          MJ_APIKEY_PRIVATE: ${{ secrets.MJ_APIKEY_PRIVATE }}
+      - name: make release if build success
+        if: steps.build.outcome == 'success' && github.event.inputs.tag != ''
+        uses: "softprops/action-gh-release@v1"
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          tag_name: "${{ github.event.inputs.tag }}"
+          generate_release_notes: false
+          body: |
+            Visit [Online](https://clip.owenyoung.com/).
+          files: |
+            ./dist/*/*.epub
+            ./dist/*/*.zip
+

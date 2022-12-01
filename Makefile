@@ -15,6 +15,9 @@ serve:
 build:
 	./bin/deno run -A ./cli.ts
 
+# The following targets are for building the daily epub, or the weekly epub, or send mail.
+# If you only want to build the site, you can ignore them.
+
 .Phony: today
 today:
 	./bin/deno run -A ./cli.ts --today
@@ -43,6 +46,3 @@ day:
 serveday:
 	./bin/deno run -A ./cli.ts --serve --day=$(day)
 
-.Phony: kindle
-kindle:
-	./bin/deno run -A ./cli.ts --today --kindle

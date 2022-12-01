@@ -57,3 +57,5 @@ make serve
 ```
 
 就可以看到预览页面。
+
+7. 发布到 Vercel，直接在 <https://vercel.com/dashboard> 新建一个项目，然后选择从 Github 中导入即可，本项目下已经有`vercel.json` 配置文件了。

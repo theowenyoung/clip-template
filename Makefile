@@ -20,7 +20,7 @@ build:
 
 .Phony: today
 today:
-	./bin/deno run -A ./cli.ts --today
+	./bin/deno run -A ./cli.ts --today 
 
 .Phony: yesterday
 yesterday:

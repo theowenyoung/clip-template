@@ -202,18 +202,20 @@ async function main() {
   if (daysBooksKeys.length > 0) {
     const keys = Object.keys(dayBooks);
     for (const key of keys) {
+      const dayConfig = JSON.parse(
+        JSON.stringify(originalBookConfig),
+      ) as BookConfig;
       if (!isServe && key !== "archive") {
         outputOptions = {
           ...outputOptions,
         };
-        if (flags.epub) {
-          outputOptions.epub = {
-            "optional": true,
-            "cover-image": "cover.jpg",
-            "command": binDir + "/mdbook-epub",
-            "use-default-css": false,
-          };
-        }
+        outputOptions.epub = {
+          "optional": true,
+          "cover-image": "cover.jpg",
+          "command": binDir + "/mdbook-epub",
+          "use-default-css": false,
+        };
+        dayConfig.output = outputOptions;
       }
       const days = dayBooks[key];
       // check if the day exists
@@ -247,9 +249,6 @@ async function main() {
             ],
           });
         }
-        const dayConfig = JSON.parse(
-          JSON.stringify(originalBookConfig),
-        ) as BookConfig;
         dayConfig.book.title = dayConfig.book.title + " " + key;
         dayConfig.book.description = dayConfig.book.description + " " + key;
         books[`${key}`] = {
@@ -700,6 +699,7 @@ ${body}
         }-${keyType}-${key}.epub`,
       );
       await Deno.copyFile(epubPath, epubNewPath);
+      console.log(`build epub ${epubNewPath} success.`);
 
       // // copy pdf file
       // const pdfPath = path.join(bookSourceFileDist, "book/pdf/output.pdf");
@@ -722,6 +722,7 @@ ${body}
         ],
         cwd: htmlPath,
       });
+
       await zipProcess.status();
       // send mail
       if (flags.mail) {

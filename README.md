@@ -64,6 +64,8 @@ make serve
 
 网站的标题之类的配置都在`book.toml`下，照猫画虎修改即可。 查看所有可配置的东西，请参阅[这里](https://rust-lang.github.io/mdBook/format/configuration/index.html)
 
+如果你有静态文件需要提交放在网站根目录到话，可以放在`template/archive` 下，现在有一个 `robots.txt`, 默认只允许搜索引擎收录首页，其他页面一律不允许，因为考虑到 clip 的文章大都是收藏别人的文章，所以不让搜索引擎收录是一个合理的默认选择，你可以根据自己的需要修改。
+
 主要是修改你的网站名称，网址，作者以及 Git Repo 相关配置等等。
 
 ## 高级
@@ -73,5 +75,21 @@ make serve
 如果你不修改相关配置的话，默认是不开启的，每日自动输出当日的 epub 文件的。
 
 如果你想启用的话，需要把`.github/workflows/build-daily.yml`里面的注释去掉，然后发送 email 需要用到 <https://www.mailjet.com/>的 API，免费额度每日 200 封，足够个人使用。
+
+我使用<https://orly.nanmu.me/>生成 epub 的封面图，你可以生成一个，然后替换 `templates/archive/cover.jpg` 以及 `templates/cover.jpg`
+
+本地测试生成 epub 文件可以运行如下命令：
+
+```bash
+make today
+```
+
+```bash
+make yesterday
+```
+
+```bash
+make day day=2022-11-21
+```
 
 具体配置可以参考我的 [clip 配置](https://github.com/theowenyoung/clip/blob/main/.github/workflows/build-daily.yml)，等有人需要，我再完善这部分文档吧，或者欢迎你贡献呀！

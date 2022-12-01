@@ -208,6 +208,7 @@ async function main() {
         };
         if (flags.epub) {
           outputOptions.epub = {
+            "optional": true,
             "cover-image": "cover.jpg",
             "command": binDir + "/mdbook-epub",
             "use-default-css": false,

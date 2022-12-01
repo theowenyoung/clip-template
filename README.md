@@ -2,28 +2,36 @@
 
 这是 <https://clip.owenyoung.com/> 项目的模版项目，如果你想复制一个类似的项目请从这里开始。
 
-## Get Started
+## 流程
 
-1. 点此[Fork](https://github.com/theowenyoung/clip-template/fork) 本项目到你的自己的 Github 账户。
+使用 <https://github.com/theowenyoung/markdownload> 浏览器扩展，把网页的文章，按日期保存到本地，然后用<https://rust-lang.github.io/mdBook/> 生成网页，并使用[Vercel](https://vercel.com/dashboard)发布。
+
+Online Demo: <https://clip-template.vercel.app/>
+
+## 如何使用？
+
+> 注意，当前我只测试了 macos 和 linux，没有 windows 机器，但是欢迎贡献～
+
+1. 点此[Fork](https://github.com/theowenyoung/clip-template/fork) 本项目到你的自己的 Github 账户, 你可以改名为`clip`。
 
 2. 本地克隆你 fork 后的项目，记得要克隆到`Downloads`目录，因为浏览器扩展下载的文章只允许下载到`Downloads`目录：
 
-```bash
+> 记得把下面的地址换成你的 repo 地址
 
+```bash
+cd ~/Downloads
+git clone git@github.com:theowenyoung/clip.git
 ```
 
-这里会保存我平时阅读的文章的全文 Markdown 文件，如果是英文文章的话，会有中文的译文附在每个段落后面，只保存我觉得值得收藏的，更新频率大约是一周 2-4 次。
+3. 本地安装依赖，依赖的二进制完美都会安装在当前项目目录下的`bin`目录内，这样不会污染别的地方，这个命令会安装`mdbook`,`deno`到本地目录：
 
-我使用浏览器扩展：<https://github.com/immersive-translate/immersive-translate> 进行英文文章的双语阅读，并且使用这款我修改后的 Markdownload 浏览器扩展进行文章的保存：<https://github.com/theowenyoung/markdownload>
+```bash
+cd ~/Downloads/clip
+make install
+```
 
-当我在读到觉得值得收藏下来的文章的时候，我会点击该扩展的图标，手动将其保存为 Markdown 文件，然后同步到 Github 的 Repo: <https://github.com/theowenyoung/clip>
+4. 本地启动运行
 
-在这个 Github 的 Repo 里有一个每日任务: <https://github.com/theowenyoung/clip/blob/main/.github/workflows/build-daily.yml>，负责把每日更新的文章推送到我的 Kindle 绑定的邮箱。
-
-我会在遛狗的时候使用 Kindle 再次阅读双语文章，以此来学习英语。如果你也想在你的 Kindle 邮箱里收到这份 epub 的话，可以在这里找到我的联系方式： <https://www.owenyoung.com/about/>, 我会手动把你的邮件地址也加进发送列表。我使用 Mailjet 的免费额度在推送邮件，每日限额 200 封，足够我个人使用: <https://app.mailjet.com/>
-
-如果你在 Kindle 上使用的话，需要把`bot@owenyoung.com`添加进你的 `Kindle Approved Personal Document E-mail List`: <https://www.amazon.com/hz/mycd/myx#/home/settings/payment>
-
-你也可以直接在线阅读所有的文章： <https://clip.owenyoung.com>
-
-或者在这里下载 epub 文件:<https://github.com/theowenyoung/clip/releases>
+```bash
+make serve
+```

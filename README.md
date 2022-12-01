@@ -35,3 +35,25 @@ make install
 ```bash
 make serve
 ```
+
+此时，打开 <http://localhost:8000> 应该就能看到文章。
+
+文章都是保存在`content/2022/11/14/{slug}/index.md`的，如果有图片，图片也保存在该目录下。我使用我修改的一个[插件](https://github.com/theowenyoung/markdownload),它负责把文章保存到本地目录下。
+
+![](https://i.imgur.com/pTvQQ1h.png)
+
+5. 安装插件，请在<https://github.com/theowenyoung/markdownload/releases> 下载最新版插件，firefox 浏览器可以打开`about:addons`页面，选择从文件安装。 chrome 浏览器手动安装步骤请参考[这里](https://github.com/immersive-translate/immersive-translate/blob/main/readme.md#chrome-%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85)
+
+6. 安装后，可以从浏览器的扩展页面，进入该扩展的配置页面，然后导入我的这个[配置文件](https://raw.githubusercontent.com/theowenyoung/clip-template/main/markdownload-config.json)，之后，可以按照你自己的需求修改配置。
+
+现在可以打开一篇文章,比如：
+
+<https://www.owenyoung.com/inspires/>
+
+试试使用插件保存文章,保存后，本地运行：
+
+```bash
+make serve
+```
+
+就可以看到预览页面。

@@ -1,22 +1,25 @@
 # Clip
 
-这是 <https://clip.owenyoung.com/> 项目的模版项目，如果你想复制一个类似的项目请从这里开始。
+这是 <https://clip.owenyoung.com/> 项目的模版，该项目旨在浏览网页的时候，将网页按日期保存为 markdown 文档，然后使用 [mdbook](https://rust-lang.github.io/mdBook/) 生成网页，发布到网上。
 
-## 流程
+## 大概流程
 
-使用 <https://github.com/theowenyoung/markdownload> 浏览器扩展，把网页的文章，按日期保存到本地，然后用<https://rust-lang.github.io/mdBook/> 生成网页，并使用[Vercel](https://vercel.com/dashboard)发布。
+1. 浏览网页，比如 <https://www.owenyoung.com/inspires/>
+2. 可选：我使用 [Immersive Translate](https://github.com/immersive-translate/immersive-translate) 扩展将网页翻译为双语文章，然后再用这个 [markdownload](https://github.com/theowenyoung/markdownload) 扩展，把双语文章保存下来。
+3. 使用 Git 把本地 wfjm 同步到远程仓库
+4. [Vercel](https://vercel.com/dashboard)会自动部署并发布。
 
 Online Demo: <https://clip-template.vercel.app/>
 
-## 如何使用？
+## 如何初始化
 
-> 注意，当前我只测试了 macos 和 linux，没有 windows 机器，但是欢迎贡献～
+> 注意，当前我只测试了 macos 和 linux，我没有 windows 机器，所以没有写 Windows 的脚本，但是欢迎贡献～
 
 1. 点此[Fork](https://github.com/theowenyoung/clip-template/fork) 本项目到你的自己的 Github 账户, 名称修改为`clip` (如果是其他的名字，后面的步骤中安装的插件配置，里面要修改下)
 
-2. 本地克隆你 fork 后的项目，记得要克隆到`Downloads`目录，因为浏览器扩展下载的文章只允许下载到`Downloads`目录：
+2. 把你 fork 后的项目克隆到本地，记得要克隆到本地的`~/Downloads`目录(浏览器默认下载目录，或者你自定义的下载目录，因为浏览器只允许扩展将文件下载到`Downloads`目录：
 
-> 记得把下面的地址换成你的 repo 地址
+> 记得把下面的地址换成你 fork 后的 repo 地址：
 
 ```bash
 cd ~/Downloads
@@ -59,6 +62,11 @@ make serve
 就可以看到预览页面。
 
 7. 发布到 Vercel，直接在 <https://vercel.com/dashboard> 新建一个项目，然后选择从 Github 中导入即可，本项目下已经有`vercel.json` 配置文件了。
+
+## 初始化之后的常规操作
+
+1. 看到想收藏的文章，点击扩展图标保存到本地
+2. 使用 Git 同步到远程仓库即可，Vercel 会自动部署最新的项目。
 
 ## 配置
 

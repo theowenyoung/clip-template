@@ -85,7 +85,7 @@ Online Demo: <https://clip-template.vercel.app/>
 
 ## 插件配置
 
-我使用的默认 Markdown Frontmatter 是遵循的 zola 的格式：
+我默认的 Markdown Frontmatter 遵循的是 [zola](https://www.getzola.org/) 的格式：
 
 ```
 ---
@@ -103,7 +103,7 @@ extra:
 ---
 ```
 
-如果你使用的是别的 tags 格式，可以改为：
+如果你需要别的 tags 的格式，可以改为：
 
 ```
 ---
@@ -120,13 +120,15 @@ extra:
 ---
 ```
 
-## 高级
+## Epub 相关配置(可选，默认不启用)
 
 我在这个项目里会使用 Github Actions，把当日的文章汇总成一个 epub 文件，然后发送 email 到我的 kindle 邮箱里，这样就能在 kindle 阅读这些保存下来的文章。
 
-如果你不修改相关配置的话，默认是不开启的，每日自动输出当日的 epub 文件的。
+如果你不修改相关配置的话，默认是不开启的。
 
-如果你想启用的话，需要把`.github/workflows/build-daily.yml`里面的注释去掉，然后发送 email 需要用到 <https://www.mailjet.com/>的 API，免费额度每日 200 封，足够个人使用。
+如果你想启用的话，需要把`.github/workflows/build-daily.yml`里面的注释去掉
+
+> 发送 email 需要用到 <https://www.mailjet.com/>的 API，免费额度每日 200 封，足够个人使用。 你需要注册一个账户，然后拿到 API ID 和 Secret
 
 我使用<https://orly.nanmu.me/>生成 epub 的封面图，你可以生成一个，然后替换 `templates/archive/cover.jpg` 以及 `templates/cover.jpg`
 

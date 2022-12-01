@@ -7,6 +7,9 @@ import {
   parse as parseTOML,
   stringify,
 } from "https://deno.land/std@0.159.0/encoding/toml.ts";
+import {
+  stringify as stringifyYAML,
+} from "https://deno.land/std@0.159.0/encoding/yaml.ts";
 import { encode } from "https://deno.land/std@0.165.0/encoding/base64.ts";
 // import { default as kebabCase } from "https://jspm.dev/lodash@4.17.21/kebabCase";
 import { default as groupBy } from "https://deno.land/x/lodash@4.17.15-es/groupBy.js";
@@ -77,6 +80,7 @@ interface BookConfig {
   base_url: string;
   mail?: Record<string, string>;
   book: Record<string, unknown>;
+  preprocessor: Record<string, Record<string, string>>;
   output: OutputOptions;
 }
 interface SubSection {
@@ -177,7 +181,14 @@ async function main() {
   const workDir = new URL(".", import.meta.url).pathname;
   const bookToml = await Deno.readTextFile(`${workDir}/book.toml`);
   const originalBookConfig = parseTOML(bookToml) as unknown as BookConfig;
-  const baseUrl = originalBookConfig.base_url || "";
+  let baseUrl = "";
+  if (
+    originalBookConfig.preprocessor && originalBookConfig.preprocessor.rss &&
+    originalBookConfig.preprocessor.rss["url-base"]
+  ) {
+    baseUrl = originalBookConfig.preprocessor.rss["url-base"];
+  }
+
   let mailConfig = {};
   if (originalBookConfig.output && originalBookConfig.output.mail) {
     mailConfig = originalBookConfig.output.mail;
@@ -364,7 +375,15 @@ async function main() {
     const allFiles: string[] = [];
     for (const chapter of chapters) {
       // console.log(chapter.path);
-      let markdownContent = `# ${chapter.title}\n\n`;
+      // add frontmatter to top
+      const frontMatter = {
+        date: chapter.date,
+      };
+
+      let markdownContent = `---
+${stringifyYAML(frontMatter)}---
+
+# ${chapter.title}\n\n`;
       // if title is not the same as original title
       if (chapter.frontMatter) {
         const title = chapter.frontMatter.title;
@@ -671,10 +690,9 @@ ${body}
     const bookTomlPath = path.join(bookSourceFileDist, "book.toml");
     await Deno.writeTextFile(bookTomlPath, bookToml);
     console.log(`build book ${key} source files success`);
-    console.log("bookSourceFileDist", bookSourceFileDist);
-
     const p = Deno.run({
-      cmd: ["./bin/mdbook", "build", bookSourceFileDist],
+      cmd: ["../../bin/mdbook", "build"],
+      cwd: bookSourceFileDist,
     });
     await p.status();
     const distDir = path.join(workDir, "dist", key);

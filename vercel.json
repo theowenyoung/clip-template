@@ -1,0 +1,5 @@
+{
+  "buildCommand": "make build",
+  "installCommand": "make install",
+  "outputDirectory": "dist/archive"
+}

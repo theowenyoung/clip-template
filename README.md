@@ -12,7 +12,7 @@ Online Demo: <https://clip-template.vercel.app/>
 
 > 注意，当前我只测试了 macos 和 linux，没有 windows 机器，但是欢迎贡献～
 
-1. 点此[Fork](https://github.com/theowenyoung/clip-template/fork) 本项目到你的自己的 Github 账户, 你可以改名为`clip`。
+1. 点此[Fork](https://github.com/theowenyoung/clip-template/fork) 本项目到你的自己的 Github 账户, 名称修改为`clip` (如果是其他的名字，后面的步骤中安装的插件配置，里面要修改下)
 
 2. 本地克隆你 fork 后的项目，记得要克隆到`Downloads`目录，因为浏览器扩展下载的文章只允许下载到`Downloads`目录：
 
@@ -63,6 +63,8 @@ make serve
 ## 配置
 
 网站的标题之类的配置都在`book.toml`下，照猫画虎修改即可。 查看所有可配置的东西，请参阅[这里](https://rust-lang.github.io/mdBook/format/configuration/index.html)
+
+主要是修改你的网站名称，网址，作者以及 Git Repo 相关配置等等。
 
 ## 高级
 

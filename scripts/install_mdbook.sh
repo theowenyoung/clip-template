@@ -6,10 +6,10 @@ binname="mdbook-epub"
 mkdir -p $BIN_DIR
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     cd -- /tmp
-    curl -OL https://github.com/theowenyoung/$binname/releases/latest/download/$binname-x86_64-unknown-linux-gnu.tar.gz
-    tar -xf /tmp/$binname-x86_64-unknown-linux-gnu.tar.gz -C $BIN_DIR
-    curl -OL https://github.com/rust-lang/mdBook/releases/download/v0.4.21/mdbook-v0.4.21-x86_64-unknown-linux-gnu.tar.gz
-    tar -xf /tmp/mdbook-v0.4.21-x86_64-unknown-linux-gnu.tar.gz -C $BIN_DIR
+    curl -OL https://github.com/theowenyoung/$binname/releases/latest/download/$binname-epub-x86_64-unknown-linux-musl.tar.gz
+    tar -xf /tmp/$binname-x86_64-unknown-linux-musl.tar.gz -C $BIN_DIR
+    curl -OL https://github.com/rust-lang/mdBook/releases/download/v0.4.22/mdbook-v0.4.22-x86_64-unknown-linux-musl.tar.gz
+    tar -xf tmp/mdbook-v0.4.22-x86_64-unknown-linux-musl.tar.gz -C $BIN_DIR
     curl -OL https://github.com/denoland/deno/releases/download/v1.28.2/deno-x86_64-unknown-linux-gnu.zip
     unzip /tmp/deno-x86_64-unknown-linux-gnu.zip -d $BIN_DIR
 

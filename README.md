@@ -6,7 +6,7 @@
 
 1. 浏览网页，比如 <https://www.owenyoung.com/inspires/>
 2. 可选：我使用 [Immersive Translate](https://github.com/immersive-translate/immersive-translate) 扩展将网页翻译为双语文章，然后再用这个 [markdownload](https://github.com/theowenyoung/markdownload) 扩展，把双语文章保存下来。
-3. 使用 Git 把本地 wfjm 同步到远程仓库
+3. 使用 Git 把本地文件同步到远程仓库
 4. [Vercel](https://vercel.com/dashboard)会自动部署并发布。
 
 Online Demo: <https://clip-template.vercel.app/>

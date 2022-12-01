@@ -59,3 +59,17 @@ make serve
 就可以看到预览页面。
 
 7. 发布到 Vercel，直接在 <https://vercel.com/dashboard> 新建一个项目，然后选择从 Github 中导入即可，本项目下已经有`vercel.json` 配置文件了。
+
+## 配置
+
+网站的标题之类的配置都在`book.toml`下，照猫画虎修改即可。 查看所有可配置的东西，请参阅[这里](https://rust-lang.github.io/mdBook/format/configuration/index.html)
+
+## 高级
+
+我在这个项目里会使用 Github Actions，把当日的文章汇总成一个 epub 文件，然后发送 email 到我的 kindle 邮箱里，这样就能在 kindle 阅读这些保存下来的文章。
+
+如果你不修改相关配置的话，默认是不开启的，每日自动输出当日的 epub 文件的。
+
+如果你想启用的话，需要把`.github/workflows/build-daily.yml`里面的注释去掉，然后发送 email 需要用到 <https://www.mailjet.com/>的 API，免费额度每日 200 封，足够个人使用。
+
+具体配置可以参考我的 [clip 配置](https://github.com/theowenyoung/clip/blob/main/.github/workflows/build-daily.yml)，等有人需要，我再完善这部分文档吧，或者欢迎你贡献呀！

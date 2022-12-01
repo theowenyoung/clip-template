@@ -18,10 +18,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/checkout@v3
-        with:
-          repository: theowenyoung/blog
-          path: blog
       - uses: denoland/setup-deno@v1
         with:
           deno-version: v1.x
@@ -34,7 +30,7 @@ jobs:
       - run: make install
       - name: Build lastweek book
         id: build
-        run: JOURNAL_PATH=./blog deno run -A ./cli.ts ${{ github.event.inputs.args }}
+        run: deno run -A ./cli.ts ${{ github.event.inputs.args }}
         continue-on-error: true
         env:
           MJ_APIKEY_PUBLIC: ${{ secrets.MJ_APIKEY_PUBLIC }}

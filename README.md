@@ -1,4 +1,16 @@
-# Owen's Clip
+# Clip
+
+这是 <https://clip.owenyoung.com/> 项目的模版项目，如果你想复制一个类似的项目请从这里开始。
+
+## Get Started
+
+1. 点此[Fork](https://github.com/theowenyoung/clip-template/fork) 本项目到你的自己的 Github 账户。
+
+2. 本地克隆你 fork 后的项目，记得要克隆到`Downloads`目录，因为浏览器扩展下载的文章只允许下载到`Downloads`目录：
+
+```bash
+
+```
 
 这里会保存我平时阅读的文章的全文 Markdown 文件，如果是英文文章的话，会有中文的译文附在每个段落后面，只保存我觉得值得收藏的，更新频率大约是一周 2-4 次。
 

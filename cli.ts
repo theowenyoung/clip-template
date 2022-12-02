@@ -8,9 +8,6 @@ import {
   parse as parseTOML,
   stringify,
 } from "https://deno.land/std@0.159.0/encoding/toml.ts";
-import {
-  stringify as stringifyYAML,
-} from "https://deno.land/std@0.159.0/encoding/yaml.ts";
 import { encode } from "https://deno.land/std@0.165.0/encoding/base64.ts";
 // import { default as kebabCase } from "https://jspm.dev/lodash@4.17.21/kebabCase";
 import { default as groupBy } from "https://deno.land/x/lodash@4.17.15-es/groupBy.js";

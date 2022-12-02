@@ -28,7 +28,7 @@ jobs:
         env:
           MJ_APIKEY_PUBLIC: ${{ secrets.MJ_APIKEY_PUBLIC }}
           MJ_APIKEY_PRIVATE: ${{ secrets.MJ_APIKEY_PRIVATE }}
-     - name: make release if build success
+      - name: make release if build success
         if: steps.build.outcome == 'success'
         uses: "softprops/action-gh-release@v1"
         with:
@@ -37,7 +37,7 @@ jobs:
           tag_name: "daily-${{ env.YESTERDAY }}"
           generate_release_notes: false
           body: |
-            Visit [Online](https://clip.owenyoung.com/).
+            Visit [Online](https://clip-template.vercel.app/).
           files: |
             ./dist/*/*.epub
             ./dist/*/*.zip

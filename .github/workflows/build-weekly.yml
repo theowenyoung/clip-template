@@ -37,7 +37,7 @@ jobs:
           tag_name: "weekly-${{ env.LASTWEEK }}"
           generate_release_notes: false
           body: |
-            Visit [Online](https://clip.owenyoung.com/).
+            Visit [Online](https://clip-template.vercel.app/).
           files: |
             ./dist/*/*.epub
             ./dist/*/*.zip

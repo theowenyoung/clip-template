@@ -44,7 +44,7 @@ jobs:
           tag_name: "${{ github.event.inputs.tag }}"
           generate_release_notes: false
           body: |
-            Visit [Online](https://clip.owenyoung.com/).
+            Visit [Online](https://clip-template.vercel.app/).
           files: |
             ./dist/*/*.epub
             ./dist/*/*.zip

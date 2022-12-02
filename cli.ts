@@ -3,7 +3,7 @@ import * as fs from "https://deno.land/std@0.159.0/fs/mod.ts";
 import { extract } from "https://deno.land/std@0.159.0/encoding/front_matter.ts";
 import { DateTimeFormatter } from "https://deno.land/std@0.159.0/datetime/formatter.ts";
 import * as path from "https://deno.land/std@0.159.0/path/mod.ts";
-import Feed from "https://esm.sh/rss@1.2.2";
+import { Feed, FeedOptions } from "https://esm.sh/feed@4.2.2";
 import {
   parse as parseTOML,
   stringify,
@@ -30,7 +30,7 @@ import {
 import { toMarkdown } from "https://esm.sh/mdast-util-to-markdown@1.3.0";
 import { fromMarkdown } from "https://esm.sh/mdast-util-from-markdown@1.2.0";
 import { visit } from "https://esm.sh/unist-util-visit@4.1.1";
-import showdown from "https://esm.sh/showdown@2.1.0/showdown.js";
+import showdown from "https://esm.sh/showdown@2.1.0";
 // @ts-ignore: npm module
 const _slug = transliteration.slugify;
 export const SECOND = 1e3;
@@ -766,41 +766,43 @@ ${body}
     // generate rss items;
     if (key === "archive") {
       const feedItems = [];
-      const feedParams = {
+      const feedParams: FeedOptions = {
         title: originalBookConfig.book.title as string,
         description: originalBookConfig.book.description as string,
-        feed_url: `${originalBookConfig.base_url}/feed.xml`,
-        site_url: originalBookConfig.base_url,
+        id: originalBookConfig.base_url,
+        link: originalBookConfig.base_url,
         language: originalBookConfig.book.language as string, // optional, used only in RSS 2.0, possible values: http://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes
+        generator: "clip", // optional, default = 'Feed for Node.js'
+        copyright: "",
       };
       const authors = originalBookConfig.book.authors as string[];
-      // if (
-      //   authors &&
-      //   authors.length > 0
-      // ) {
-      //   feedParams.author = {
-      //     name: authors[0],
-      //     link: originalBookConfig.base_url,
-      //   };
-      // }
-      //
+      if (
+        authors &&
+        authors.length > 0
+      ) {
+        feedParams.author = {
+          name: authors[0],
+          link: originalBookConfig.base_url,
+        };
+      }
+
       // check favicon exists
 
       const faviconPath = path.join(htmlPath, "favicon.png");
       if (fs.existsSync(faviconPath)) {
-        feedParams.image_url = `${originalBookConfig.base_url}/favicon.png`;
+        feedParams.favicon = `${originalBookConfig.base_url}/favicon.png`;
       }
       const feed = new Feed(feedParams);
       allChapters.slice(0, 25).forEach((post) => {
-        feed.item({
+        feed.addItem({
           title: post.title,
-          guid: relativePathToAbsoluteUrl(post.relativePath, baseUrl),
-          url: relativePathToAbsoluteUrl(post.relativePath, baseUrl),
+          id: relativePathToAbsoluteUrl(post.relativePath, baseUrl),
+          link: relativePathToAbsoluteUrl(post.relativePath, baseUrl),
           content: renderMarkdown(post.relativePath, post.content, baseUrl),
           date: post.date,
         });
       });
-      const feedText = feed.xml();
+      const feedText = feed.atom1();
       // write to feed.xml
       const feedPath = path.join(htmlPath, "feed.xml");
       await Deno.writeTextFile(feedPath, feedText);

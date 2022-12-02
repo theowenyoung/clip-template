@@ -73,6 +73,12 @@ Online Demo: <https://clip-template.vercel.app/>
 1. 看到想收藏的文章，点击扩展图标保存到本地
 2. 使用 Git 同步到远程仓库即可，Vercel 会自动部署最新的项目。
 
+## RSS 地址
+
+Mdbook 本身的目标是制作电子书，所以并不支持 RSS，但为了方便，我添加了输入 RSS 的功能，地址是根目录下的`feed.xml`，比如该 demo 的 RSS 地址：
+
+<https://clip-template.vercel.app/feed.xml>
+
 ## 配置
 
 网站的标题之类的配置都在`book.toml`下，照猫画虎修改即可。 查看所有可配置的东西，请参阅[这里](https://rust-lang.github.io/mdBook/format/configuration/index.html)

@@ -1,3 +1,4 @@
+base_url = "https://clip-template.vercel.app"
 [book]
 title = "Owen's Clip"
 description = "Owen's Clip"

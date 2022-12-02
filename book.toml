@@ -5,12 +5,6 @@ src = "content"
 language = "zh"
 authors = ["Owen Young"]
 
-[preprocessor.rss]
-enable = true
-files-glob = "**/*"
-command = "../../bin/mdbook-rss"
-url-base = "https://clip-template.vercel.app/"
-
 [output.html]
 git-repository-url = "https://github.com/theowenyoung/clip-template"
 edit-url-template = "https://github.com/theowenyoung/clip-template/edit/main/{path}"

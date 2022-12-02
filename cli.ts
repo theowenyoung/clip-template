@@ -183,10 +183,9 @@ async function main() {
   const originalBookConfig = parseTOML(bookToml) as unknown as BookConfig;
   let baseUrl = "";
   if (
-    originalBookConfig.preprocessor && originalBookConfig.preprocessor.rss &&
-    originalBookConfig.preprocessor.rss["url-base"]
+    originalBookConfig.base_url
   ) {
-    baseUrl = originalBookConfig.preprocessor.rss["url-base"];
+    baseUrl = originalBookConfig.base_url;
   }
 
   let mailConfig = {};
@@ -374,16 +373,7 @@ async function main() {
     const targetMarkdownFiles: Record<string, string> = {};
     const allFiles: string[] = [];
     for (const chapter of chapters) {
-      // console.log(chapter.path);
-      // add frontmatter to top
-      const frontMatter = {
-        date: chapter.date,
-      };
-
-      let markdownContent = `---
-${stringifyYAML(frontMatter)}---
-
-# ${chapter.title}\n\n`;
+      let markdownContent = `# ${chapter.title}\n\n`;
       // if title is not the same as original title
       if (chapter.frontMatter) {
         const title = chapter.frontMatter.title;

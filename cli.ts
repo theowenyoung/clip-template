@@ -30,7 +30,7 @@ import {
 import { toMarkdown } from "https://esm.sh/mdast-util-to-markdown@1.3.0";
 import { fromMarkdown } from "https://esm.sh/mdast-util-from-markdown@1.2.0";
 import { visit } from "https://esm.sh/unist-util-visit@4.1.1";
-import showdown from "https://esm.sh/showdown@2.1.0";
+import showdown from "https://esm.sh/showdown@2.1.0/showdown.js";
 // @ts-ignore: npm module
 const _slug = transliteration.slugify;
 export const SECOND = 1e3;

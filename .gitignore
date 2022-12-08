@@ -1,4 +1,5 @@
 # custom
+deno.lock
 bin
 blog/
 dist/

@@ -201,8 +201,8 @@ async function main() {
     baseUrl = "http://localhost:8000";
   }
   let mailConfig = {};
-  if (originalBookConfig.output && originalBookConfig.output.mail) {
-    mailConfig = originalBookConfig.output.mail;
+  if (originalBookConfig.output && originalBookConfig.mail) {
+    mailConfig = originalBookConfig.mail;
   }
   const binDir = new URL("./bin", import.meta.url).pathname;
 

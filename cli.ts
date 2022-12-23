@@ -325,8 +325,16 @@ async function main() {
         // read file
         const file = await Deno.readTextFile(entry.path);
         // extract front matter
-        const parsed = extract(file);
+        let parsed = {};
+        try {
+          parsed = extract(file);
+        } catch (e) {
+          console.error(`error parsing ${filepath}`);
+          throw e;
+        }
+        // @ts-ignore: it's ok
         const { body } = parsed;
+        // @ts-ignore: it's ok
         const attrs = parsed.attrs as FrontMatter;
         if (attrs.draft) {
           continue;

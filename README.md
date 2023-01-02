@@ -75,7 +75,7 @@ Online Demo: <https://clip-template.vercel.app/>
 
 ## RSS 地址
 
-Mdbook 本身的目标是制作电子书，所以并不支持 RSS，但为了方便，我添加了输入 RSS 的功能，地址是根目录下的`feed.xml`，比如该 demo 的 RSS 地址：
+Mdbook 本身的目标是制作电子书，所以并不支持 RSS，但为了方便，我添加了输出 RSS 的功能，地址是根目录下的`feed.xml`，比如该 demo 的 RSS 地址：
 
 <https://clip-template.vercel.app/feed.xml>
 

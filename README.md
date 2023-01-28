@@ -73,6 +73,15 @@ Online Demo: <https://clip-template.vercel.app/>
 1. 看到想收藏的文章，点击扩展图标保存到本地
 2. 使用 Git 同步到远程仓库即可，Vercel 会自动部署最新的项目。
 
+## 如何保持与这个库的同步
+
+```bash
+git remote add upstream https://github.com/theowenyoung/clip-template.git
+git pull upstream main
+```
+
+这样即可合并上游`main`分支的代码
+
 ## RSS 地址
 
 Mdbook 本身的目标是制作电子书，所以并不支持 RSS，但为了方便，我添加了输出 RSS 的功能，地址是根目录下的`feed.xml`，比如该 demo 的 RSS 地址：

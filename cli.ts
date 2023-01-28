@@ -24,9 +24,9 @@ import {
   gfmToMarkdown,
 } from "https://esm.sh/mdast-util-gfm@2.0.1";
 // import { default as kebabCase } from "https://jspm.dev/lodash@4.17.21/kebabCase";
-import { toMarkdown } from "https://esm.sh/mdast-util-to-markdown@1.3.0";
-import { fromMarkdown } from "https://esm.sh/mdast-util-from-markdown@1.2.0";
-import { visit } from "https://esm.sh/unist-util-visit@4.1.1";
+import { toMarkdown } from "https://esm.sh/mdast-util-to-markdown@1.5.0";
+import { fromMarkdown } from "https://esm.sh/mdast-util-from-markdown@1.3.0";
+import { visit } from "https://esm.sh/unist-util-visit@4.1.2";
 import showdown from "https://esm.sh/showdown@2.1.0";
 // @ts-ignore: npm module
 const _slug = transliteration.slugify;
@@ -958,11 +958,9 @@ export function startDateOfWeek(date: Date, start_day = 1): Date {
   date = new Date(date.getTime());
   const day_of_month = date.getUTCDate();
   const day_of_week = date.getUTCDay();
-  const difference_in_days = (
-    day_of_week >= start_day
-      ? day_of_week - start_day
-      : day_of_week - start_day + 7
-  );
+  const difference_in_days = day_of_week >= start_day
+    ? day_of_week - start_day
+    : day_of_week - start_day + 7;
   date.setUTCDate(day_of_month - difference_in_days);
   date.setUTCHours(0);
   date.setUTCMinutes(0);
